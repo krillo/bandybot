@@ -46,7 +46,7 @@ while ($row = mysql_fetch_assoc($result)) {
     <div class="clear"></div>
     <div style="float:left;">
       <?php echo $row['mobile'] ?><br/>
-      <a href="tel:<?php echo phnumberForHandheld($row['phone']); ?>" class="phone-link"><?php echo $row['phone'] ?></a>
+      <a href="tel:<?php echo User::phnumberForHandheld($row['phone']); ?>" class="phone-link"><?php echo $row['phone'] ?></a>
     </div>
     <div style="float:right;margin-top: 20px;">
       <form action="/edit_player.php" method="get">
