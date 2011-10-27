@@ -173,7 +173,7 @@ class User {
     $number = str_replace("-", "", $number);
     $number = str_replace(" ", "", $number);
     $first = substr($number, 0, 1);
-    if(first == '0'){
+    if($first == '0'){
       $number = substr($number, 1);
     }
     return '46' . $number;
