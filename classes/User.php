@@ -164,6 +164,20 @@ class User {
   }
 
 
+  /**
+   * Clean a phonenumber fom hypens, spaces and first 0, add 46 in front of it
+   *
+   * @param <type> $number
+   */
+  public static function phnumberForHandheld($number){
+    $number = str_replace("-", "", $number);
+    $number = str_replace(" ", "", $number);
+    $first = substr($number, 0, 1);
+    if(first == '0'){
+      $number = substr($number, 1);
+    }
+    return '46' . $number;
+  }
 
 }
 ?>
