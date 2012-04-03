@@ -1,26 +1,31 @@
 #!/usr/bin/php
 <?php
-require_once("/usr/local/boyhappy.se/bandybot/init.php");
+require_once("/var/www/boyhappy.se/bandybot/init.php");
 
 $to = User::getAllEmailAdresses();
 
 
 switch ($argv[1]) {
   case 1:
-    $subject = 'Innebandy vecka ' . date('W') . ", Betala 250:-";
+    $subject = 'Innebandy vecka ' . date('W') . ", Betala 300:-";
     break;
   case 2:
-    $subject = 'Innebandypåminnelse vecka ' . date('W') . ", Betala 250:-";
+    $subject = 'Innebandypåminnelse vecka ' .date('W') . ", Betala 300:-";
     break;
   case 3:
-    $subject = 'Innebandystatus kl 19, vecka ' . date('W') . ", Betala 250:-";
+    $subject = 'Innebandystatus kl 19, vecka ' . date('W') . ", Betala 300:-";
     break;
   default:
-    $subject = 'Innebandy vecka ' . date('W') . ", Betala 250:-";
+    $subject = 'Innebandy vecka ' . date('W') . ", Betala 300:-";
     break;
 }
 
-switch ($argv[2]) {
+if(isset($argv[2])){
+  $param = $argv[2];
+} else {
+  $param = '';
+}
+switch ($param) {
   case 'test':
     $to = User::getAllEmailAdresses(true);  //get only a test address
     break;
@@ -35,7 +40,7 @@ $message .= " \n \n";
 $message .= "KOMMER (" . count($resArray) . ")\n";
 $message .= "------ \n";
 foreach ($resArray as $user) {
-  $message .= $user[name] . " -  " . $user[comment] . "\n";
+  $message .= $user['name'] . " -  " . $user['comment'] . "\n";
 }
 
 $resArray = User::getUsersByStatus((int) User::MABY);
@@ -43,7 +48,7 @@ $message .= " \n \n";
 $message .= "KANSKE (" . count($resArray) . ")\n";
 $message .= "------ \n";
 foreach ($resArray as $user) {
-  $message .= $user[name] . " -  " . $user[comment] . "\n";
+  $message .= $user['name'] . " -  " . $user['comment'] . "\n";
 }
 
 
@@ -52,7 +57,7 @@ $message .= " \n \n";
 $message .= "KOMMER INTE (" . count($resArray) . ")\n";
 $message .= "----------- \n";
 foreach ($resArray as $user) {
-  $message .= $user[name] . " -  " . $user[comment] . "\n";
+  $message .= $user['name'] . " -  " . $user['comment'] . "\n";
 }
 
 
@@ -61,13 +66,32 @@ $message .= " \n \n";
 $message .= "ÄNNU INTE REGGADE (" . count($resArray) . ")\n";
 $message .= "----------- \n";
 foreach ($resArray as $user) {
-  $message .= $user[name] . " -  " . $user[comment] . "\n";
+  $message .= $user['name'] . " -  " . $user['comment'] . "\n";
 }
 
 
 if ($argv[1] < 3) {
   $message .= " \n \n";
-  $message .= "Nu är det dax att betala 250 kr per man \n";
+  $message .= "Nu är det dax att betala 300 kr perman  \n"; 
+
+
+
+$message .= "Cash eller på mitt konto: \n";
+$message .= "SEB 5365-0245787  \n\n";
+
+$message .= "Putti - 300kr \n";
+$message .= "Fredrik - BET \n";
+$message .= "Anders O - 300kr \n";
+$message .= "Robban - 300kr \n";
+$message .= "Deffe - 300kr \n";
+$message .= "Niklas - 300kr \n";
+$message .= "Staffan - 300kr \n";
+$message .= "Rickard - 300kr \n";
+$message .= "Björn - BET \n";
+$message .= "Anders N -  BET \n";
+$message .= "Frippe - 300kr \n";
+
+
   $message .= "Regga er på: \n";
   $message .= "http://bandybot.boyhappy.se \n";
   $message .= " \n";
@@ -89,6 +113,6 @@ $headers .= 'Reply-To: bandybot@boyhappy.se' . "\r\n";
 $headers .= 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/plain; charset=iso-8859-1' . "\r\n";
 
-
+//echo $message;
 mail($to, $subject, $message, $headers);
 ?>
