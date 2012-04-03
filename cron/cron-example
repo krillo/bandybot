@@ -1,0 +1,13 @@
+#bandybot mail
+#* * * * *    /var/www/boyhappy.se/bandybot/scripts/mailsender.php 3 test >> /var/www/boyhappy.se/bandybot/log/bandybot.log 2>&1
+0 10 * * tue  /var/www/boyhappy.se/bandybot/scripts/mailsender.php 1 >> /var/www/boyhappy.se/bandybot/log/bandybot.log 2>&1
+25 16 * * tue /var/www/boyhappy.se/bandybot/scripts/mailsender.php 2 >> /var/www/boyhappy.se/bandybot/log/bandybot.log 2>&1
+0 19 * * tue  /var/www/boyhappy.se/bandybot/scripts/mailsender.php 3 >> /var/www/boyhappy.se/bandybot/log/bandybot.log 2>&1
+
+#update twitter
+#* * * * * /var/www/boyhappy.se/bandybot/scripts/updateTwitter.php >> /var/www/boyhappy.se/bandybot/log/bandybot.log 2>&1
+#* 10-20 * * tue /var/www/boyhappy.se/bandybot/scripts/updateTwitter.php >> /var/www/boyhappy.se/bandybot/log/bandybot.log 2>&1
+
+#reset users
+#* * * * * /var/www/boyhappy.se/bandybot/scripts/resetUsers.php >> /var/www/boyhappy.se/bandybot/log/bandybot.log 2>&1
+0 22 * * tue /var/www/boyhappy.se/bandybot/scripts/resetUsers.php >> /var/www/boyhappy.se/bandybot/log/bandybot.log 2>&1
